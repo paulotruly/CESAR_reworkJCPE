@@ -1,0 +1,4 @@
+CONTROLLER é a porta da entrada da aplicação,
+recebe as requisições HTTP do front-end e delega
+a tarefa para a camada de serviço, ele não possui
+lógica de negócio

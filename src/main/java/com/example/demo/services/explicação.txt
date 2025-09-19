@@ -1,0 +1,3 @@
+SERVICES é o cérebro da operação, ele recebe a chamada do controlador,
+aplica as regras de negócio (como validações) e então decide o que
+precisa ser salvo ou buscado no banco de dados

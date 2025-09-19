@@ -1,0 +1,2 @@
+REPOSITÓRIO é a camada de acesso ao dados, ele se comunica com o 
+banco para salvar-buscar-atualizar-apagar informações

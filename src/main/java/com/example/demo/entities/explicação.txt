@@ -1,0 +1,3 @@
+ENTIDADES (MODEL) são as representações dos meus dados,
+as classes não tem lógica de negócio, apenas descrevem a
+estrutura da sua informação
