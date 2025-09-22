@@ -1,6 +1,6 @@
 package com.example.demo.loader;
 
-import com.example.demo.entity.Topico;
+import com.example.demo.entities.Topico;
 import com.example.demo.repository.TopicoRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

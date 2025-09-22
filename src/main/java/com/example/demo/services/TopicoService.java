@@ -1,6 +1,6 @@
-package com.example.demo.service;
+package com.example.demo.services;
 
-import com.example.demo.entity.Topico;
+import com.example.demo.entities.Topico;
 import com.example.demo.repository.TopicoRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;

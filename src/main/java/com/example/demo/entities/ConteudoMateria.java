@@ -1,6 +1,8 @@
-package com.example.demo.entity;
+package com.example.demo.entities;
 
 import java.util.List;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class ConteudoMateria {
@@ -35,6 +37,10 @@ public class ConteudoMateria {
     public static class ItemSubtitulo {
         private String titulo;
         private String texto;
+
+        public ItemSubtitulo() {
+            
+        }
 
         public ItemSubtitulo(String titulo, String texto) {
             this.titulo = titulo;

@@ -1,12 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Materia;
-import com.example.demo.entity.Topico;
-import com.example.demo.service.MateriaService;
-import com.example.demo.service.TopicoService;
+import com.example.demo.exceptions.ResourceNotFoundException;
+import com.example.demo.entities.Materia;
+import com.example.demo.entities.Topico;
+import com.example.demo.services.MateriaService;
+import com.example.demo.services.TopicoService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Optional;
 
 // indica ao spring que essa é uma classe controladora que lida com requisições http e retorna dados no formato JSON
 @RestController
@@ -26,7 +26,8 @@ public class TopicoController {
     // criando endpoints
     @GetMapping("/{id}")
     public Topico getTopicoPorId(@PathVariable Long id) {
-        return topicoService.findById(id);
+        return topicoService.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Tópico não encontrado!"));
     }
 
     @GetMapping("/{id}/materias")

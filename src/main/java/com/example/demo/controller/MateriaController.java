@@ -38,7 +38,7 @@ public class MateriaController {
     public Materia updateMateria(@PathVariable Long id, @RequestBody Materia materiaAtualizada) {
         if (materiaRepository.existsById(id)) { // verifica se a matéria existe
             materiaAtualizada.setId(id); // garante que o id da matéria seja o mesmo da que for atualizada
-            return materiaRepository.save(materiaAtualizada)
+            return materiaRepository.save(materiaAtualizada);
         }
         return null;
     }
