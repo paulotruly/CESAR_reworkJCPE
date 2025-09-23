@@ -34,6 +34,7 @@ public class ConteudoMateria {
         this.subtitulos = subtitulos;
     }
     
+    @Embeddable 
     public static class ItemSubtitulo {
         private String titulo;
         private String texto;
