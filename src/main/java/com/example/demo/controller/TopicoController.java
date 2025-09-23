@@ -23,6 +23,11 @@ public class TopicoController {
         this.materiaService = materiaService;
     }
 
+    @GetMapping
+    public List<Topico> getAllTopicos() {
+        return topicoService.findAll();
+    }
+
     // criando endpoints
     @GetMapping("/{id}")
     public Topico getTopicoPorId(@PathVariable Long id) {
