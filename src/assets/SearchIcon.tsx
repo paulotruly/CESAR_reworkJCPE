@@ -13,7 +13,7 @@ export const SearchIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
       cx="21"
       cy="21"
       r="12"
-      stroke="currentColor"
+      stroke="white"
       strokeWidth="4"
     />
     <line
@@ -21,7 +21,7 @@ export const SearchIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
       y1="30"
       x2="40"
       y2="40"
-      stroke="currentColor"
+      stroke="white"
       strokeWidth="4"
       strokeLinecap="round"
     />
