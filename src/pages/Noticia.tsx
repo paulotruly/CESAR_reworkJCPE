@@ -8,7 +8,7 @@ function Noticia() {
         <div className="relative">
 
             {/* FECHAR */}
-            <a className="absolute bg-red-500 rounded-full h-10 w-10 top-2 right-2 z-30 text-xl font-semibold flex justify-center items-center"> X </a>
+            <a className="absolute bg-white rounded-full h-10 w-10 top-12 right-2 z-30 text-xl font-semibold flex justify-center items-center"> X </a>
 
             {/* BARRA DA CATEGORIA */}
             <div className="bg-white w-full h-10 relative flex flex-row items-center pl-3 p-1">
@@ -29,6 +29,12 @@ function Noticia() {
                     Metroviários e CBTU chegam a acordo e greve do Metrô do Recife pode terminar nesta quarta (5)
                 </h3>
 
+                <div className="text-left pl-2 mx-7 mb-4 text-sm border-l-2 border-red-500 font-light">
+                    <p>
+                        Acordo foi mediado pelo TRT-6 e será votado pelos metroviários em assembleia às 18h desta quarta. Assim, o metrô voltaria a operar às 5h da quinta (6)
+                    </p>
+                </div>
+
                 {/* INFORMAÇÕES E CRÉDITOS */}
                 <div className="flex flex-row justify-between items-center gap-8 text-[12px] mx-6 text-gray-500">
                     <p>por nomeJornalista</p>
@@ -36,13 +42,7 @@ function Noticia() {
                     <p>2 min de leitura</p>
                 </div>
 
-                <div className="text-left pl-2 mx-7 mt-4 text-sm border-l-2 border-red-500 font-light">
-                    <p>
-                        Acordo foi mediado pelo TRT-6 e será votado pelos metroviários em assembleia às 18h desta quarta. Assim, o metrô voltaria a operar às 5h da quinta (6)
-                    </p>
-                </div>
-
-                <div className="mt-4 mx-6 flex flex-row justify-between items-center gap-2">
+                <div className="mt-4 mx-6 flex flex-row items-center gap-2">
                     <div className="bg-[#F5F5F5] rounded-full flex justify-center items-center p-2">
                         <ChatBubbleIcon></ChatBubbleIcon>
                     </div>
@@ -60,9 +60,9 @@ function Noticia() {
             {/* CONTEÚDO */}
             <div className="relative mx-6 text-md mt-4 mb-6">
 
-                <div className="float-right h-[200px] w-[150px] ml-4 mb-5 bg-gray-200 text-gray-400 flex justify-center items-center">
+                <span className="float-right h-[200px] w-[150px] ml-4 mb-5 bg-gray-200 text-gray-400 flex justify-center items-center">
                     publicidade
-                </div>
+                </span>
 
                 <p className="text-left">
                 Após dois dias de paralisação, a greve do Metrô do Recife pode chegar ao fim nesta quarta-feira (5/11), terceiro dia do movimento. Metroviários e a Companhia Brasileira de Trens Urbanos (CBTU) chegaram a um acordo mediados pelo Tribunal Regional do Trabalho da 6ª Região (TRT-6) durante reunião de conciliação na tarde desta terça (4), mas o entendimento precisa ser validado pela categoria em assembleia prevista para acontecer às 18h desta quarta.
