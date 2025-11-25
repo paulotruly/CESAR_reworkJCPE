@@ -20,6 +20,7 @@ public class Materia {
     private String titulo;
     private String legenda;
     private String autor;
+    private String imagem;
     private LocalDateTime dataPublicacao;
     @Column(columnDefinition = "json")
     private ConteudoMateria conteudo;
@@ -31,10 +32,11 @@ public class Materia {
     public Materia() {
     }
 
-    public Materia(String titulo, String legenda, String autor, LocalDateTime dataPublicacao, ConteudoMateria conteudo, Topico topico){
+    public Materia(String titulo, String legenda, String autor, String imagem, LocalDateTime dataPublicacao, ConteudoMateria conteudo, Topico topico){
         this.titulo = titulo;
         this.legenda = legenda;
         this.autor = autor;
+        this.imagem = imagem;
         this.dataPublicacao = dataPublicacao;
         this.conteudo = conteudo;
         this.topico = topico;
@@ -53,6 +55,9 @@ public class Materia {
     }
     public String getAutor() {
         return autor;
+    }
+    public String getImagem() {
+        return imagem;
     }
     public ConteudoMateria getConteudo() {
         return conteudo;
@@ -74,6 +79,9 @@ public class Materia {
     }
     public void setAutor(String autor) {
         this.autor = autor;
+    }
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
     public void setDataPublicacao(LocalDateTime dataPublicacao) {
         this.dataPublicacao = dataPublicacao;

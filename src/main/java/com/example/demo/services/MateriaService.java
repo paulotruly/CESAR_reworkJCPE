@@ -38,6 +38,10 @@ public class MateriaService {
             throw new IllegalArgumentException("O autor não pode ser nulo!");
         }
 
+        if (materia.getImagem() == null || materia.getImagem().isEmpty()) {
+            throw new IllegalArgumentException("O link da imagem não pode ser nulo!");
+        }
+
         // isEmpty não se aplica aqui porque o Conteudo é um objeto
         if (materia.getConteudo() == null) {
             throw new IllegalArgumentException("O conteúdo da matéria não pode ser nulo!");
