@@ -19,15 +19,21 @@ public class TopicoDataLoader implements CommandLineRunner{
         if (topicoRepository.findByNome("Segurança").isEmpty()) {
             topicoRepository.save(new Topico("Segurança"));
         }
-        if (topicoRepository.findByNome("Saúde e Bem Estar").isEmpty()) {
-            topicoRepository.save(new Topico("Saúde e Bem Estar"));
+        if (topicoRepository.findByNome("Saúde").isEmpty()) {
+            topicoRepository.save(new Topico("Saúde"));
         }
-        if (topicoRepository.findByNome("Enem e Educação").isEmpty()) {
-            topicoRepository.save(new Topico("Enem e Educação"));
+        if (topicoRepository.findByNome("Educação").isEmpty()) {
+            topicoRepository.save(new Topico("Educação"));
         }
         // exemplo de como adicionar um novo tópico
         if (topicoRepository.findByNome("Mobilidade").isEmpty()) {
             topicoRepository.save(new Topico("Mobilidade"));
+        }
+        if (topicoRepository.findByNome("Esportes").isEmpty()) {
+            topicoRepository.save(new Topico("Esportes"));
+        }
+        if (topicoRepository.findByNome("Inovação").isEmpty()) {
+            topicoRepository.save(new Topico("Inovação"));
         }
     }
 }
