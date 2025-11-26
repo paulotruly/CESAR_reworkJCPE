@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import java.time.LocalDateTime;
@@ -22,7 +23,8 @@ public class Materia {
     private String autor;
     private String imagem;
     private LocalDateTime dataPublicacao;
-    @Column(columnDefinition = "json")
+    @Convert(converter = ConteudoMateriaConverter.class)
+    @Column(columnDefinition = "TEXT")
     private ConteudoMateria conteudo;
     @ManyToOne
     @JoinColumn(name = "topico_id") // coluna da chave estrangeira
