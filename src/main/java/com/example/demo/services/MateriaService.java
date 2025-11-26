@@ -4,6 +4,7 @@ import com.example.demo.entities.Materia;
 import com.example.demo.entities.Topico;
 import com.example.demo.repository.MateriaRepository;
 import com.example.demo.repository.TopicoRepository;
+import com.example.demo.exceptions.ResourceNotFoundException;
 
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -48,7 +49,7 @@ public class MateriaService {
         }
 
         // obriga e busca o código pelo ID
-        Topico topico = topicoRepository.findById(topicoId).orElseThrow(() -> new IllegalArgumentException("O tópico " + topicoId + "não existe!"));
+        Topico topico = topicoRepository.findById(topicoId).orElseThrow(() -> new ResourceNotFoundException("O tópico " + topicoId + " não existe!"));
         materia.setTopico(topico); // associando o objeto tópico encontrado à matéria
 
         // preenche a data da publicação
@@ -56,6 +57,37 @@ public class MateriaService {
 
         // salva a matéria no banco de dados
         return materiaRepository.save(materia);
+    }
+
+    public Materia findById(Long id) {
+        return materiaRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Matéria não encontrada com ID: " + id));
+    }
+
+    public List<Materia> findAll() {
+        return materiaRepository.findAll();
+    }
+
+    public Materia updateMateria(Long id, Materia materiaAtualizada, Long topicoId) {
+        
+        Materia materiaExistente = findById(id);
+
+        Topico topico = topicoRepository.findById(topicoId)
+            .orElseThrow(() -> new ResourceNotFoundException("O tópico " + topicoId + " não existe!"));
+
+        materiaExistente.setTitulo(materiaAtualizada.getTitulo());
+        materiaExistente.setLegenda(materiaAtualizada.getLegenda());
+        materiaExistente.setAutor(materiaAtualizada.getAutor());
+        materiaExistente.setImagem(materiaAtualizada.getImagem());
+        materiaExistente.setConteudo(materiaAtualizada.getConteudo());
+        materiaExistente.setTopico(topico);
+        
+        return materiaRepository.save(materiaExistente);
+    }
+    
+    public void deleteById(Long id) {
+        findById(id); 
+        materiaRepository.deleteById(id);
     }
 
     public List<Materia> findByTopicoId(Long topicoId) {

@@ -1,52 +1,55 @@
 package com.example.demo.controller;
 
 import com.example.demo.entities.Materia;
-import com.example.demo.repository.MateriaRepository;
 import com.example.demo.services.MateriaService;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/materias")
 public class MateriaController {
-    private final MateriaRepository materiaRepository;
     private final MateriaService materiaService;
 
-    public MateriaController(MateriaRepository materiaRepository, MateriaService materiaService) {
-        this.materiaRepository = materiaRepository;
+    public MateriaController(MateriaService materiaService) {
         this.materiaService = materiaService;
     }
 
     // adicionando endpoints
     @GetMapping
-    public List<Materia> getAllMaterias() {
-        return materiaRepository.findAll();
+    public ResponseEntity<List<Materia>> getAllMaterias() {
+        return ResponseEntity.ok(materiaService.findAll());
     }
 
     @GetMapping("/{id}")
-    public Optional<Materia> getMateriaById(@PathVariable Long id) {
-        return materiaRepository.findById(id);
+    public ResponseEntity<Materia> getMateriaById(@PathVariable Long id) {
+        return ResponseEntity.ok(materiaService.findById(id));
     }
 
     // criar matéria nova
     @PostMapping
-    public Materia createMateria(@RequestBody Materia materia, @RequestParam Long topicoId) {
-        return materiaService.salvarMateria(materia, topicoId);
+    public ResponseEntity<Materia> createMateria(@RequestBody Materia materia, @RequestParam Long topicoId) {
+        Materia novaMateria = materiaService.salvarMateria(materia, topicoId);
+        return ResponseEntity.status(201).body(novaMateria);
     }
 
     // editar matéria existente
     @PutMapping("/{id}")
-    public Materia updateMateria(@PathVariable Long id, @RequestBody Materia materiaAtualizada, @RequestParam Long topicoId) {
-        materiaAtualizada.setId(id);
-        return materiaService.salvarMateria(materiaAtualizada, topicoId);
+    public ResponseEntity<Materia> updateMateria(
+        @PathVariable Long id, 
+        @RequestBody Materia materiaAtualizada, 
+        @RequestParam Long topicoId
+    ) {
+        Materia updatedMateria = materiaService.updateMateria(id, materiaAtualizada, topicoId);
+        return ResponseEntity.ok(updatedMateria);
     }
 
     // apagar matéria pelo id dela
     @DeleteMapping("/{id}")
-    public void deleteMateria(@PathVariable Long id) {
-        materiaRepository.deleteById(id);
+    public ResponseEntity<Void> deleteMateria(@PathVariable Long id) {
+        materiaService.deleteById(id);
+        return ResponseEntity.noContent().build(); 
     }
 }

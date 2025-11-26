@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.entities.Topico;
 import com.example.demo.repository.TopicoRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,7 @@ public class TopicoService {
 
     // já que o usuário nao vai poder criar topicos, aqui só vai
     // buscar os tópicos já existentes
+    @Cacheable("topicos")
     public List<Topico> findAll() {
         return topicoRepository.findAll();
     }
