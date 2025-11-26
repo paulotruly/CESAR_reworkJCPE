@@ -29,11 +29,14 @@ public class ConteudoMateriaConverter implements AttributeConverter<ConteudoMate
         try {
             return objectMapper.readValue(dbData, ConteudoMateria.class);
         } catch (JsonProcessingException ex) {
+            // ⬅️ CRÍTICO: Loga a string JSON que está causando o erro
+            System.err.println("--- DADO JSON PROBLEMÁTICO: ---");
+            System.err.println(dbData); 
+            System.err.println("------------------------------------");
             System.err.println("ERRO na Desserialização JSON. Causa: " + ex.getMessage());
             ex.printStackTrace(); 
             return null;
         }
     }
-
 
 }

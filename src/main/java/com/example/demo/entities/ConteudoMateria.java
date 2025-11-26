@@ -1,12 +1,16 @@
 package com.example.demo.entities;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class ConteudoMateria {
 
+    @JsonProperty("texto Principal")
     private String textoPrincipal;
     @ElementCollection
     private List<ItemSubtitulo> subtitulos; //
