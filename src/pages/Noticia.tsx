@@ -7,8 +7,19 @@ function Noticia() {
     return (
         <div className="relative">
 
-            {/* FECHAR */}
-            <a className="absolute bg-white rounded-full h-10 w-10 top-12 right-2 z-30 text-xl font-semibold flex justify-center items-center"> X </a>
+            <div className="absolute top-14 right-2 flex flex-col items-center gap-2 z-30">
+                    <div className="bg-[#F5F5F5] rounded-full flex justify-center items-center p-2">
+                        <ChatBubbleIcon></ChatBubbleIcon>
+                    </div>
+
+                    <div className="bg-[#F5F5F5] rounded-full flex justify-center items-center p-2">
+                        <ShareIcon></ShareIcon>
+                    </div>
+
+                    <div className="bg-[#F5F5F5] rounded-full flex justify-center items-center p-2">
+                        <SaveIcon></SaveIcon>
+                    </div>
+            </div>
 
             {/* BARRA DA CATEGORIA */}
             <div className="bg-white w-full h-10 relative flex flex-row items-center pl-3 p-1">
@@ -29,31 +40,17 @@ function Noticia() {
                     Metroviários e CBTU chegam a acordo e greve do Metrô do Recife pode terminar nesta quarta (5)
                 </h3>
 
-                <div className="text-left pl-2 mx-7 mb-4 text-sm border-l-2 border-red-500 font-light">
-                    <p>
-                        Acordo foi mediado pelo TRT-6 e será votado pelos metroviários em assembleia às 18h desta quarta. Assim, o metrô voltaria a operar às 5h da quinta (6)
-                    </p>
-                </div>
-
                 {/* INFORMAÇÕES E CRÉDITOS */}
-                <div className="flex flex-row justify-between items-center gap-8 text-[12px] mx-6 text-gray-500">
+                <div className="flex flex-row justify-between items-center gap-8 text-[12px] mt-2 mb-6 mx-6 text-gray-500">
                     <p>por nomeJornalista</p>
                     <p>30 min atrás</p>
                     <p>2 min de leitura</p>
                 </div>
 
-                <div className="mt-4 mx-6 flex flex-row items-center gap-2">
-                    <div className="bg-[#F5F5F5] rounded-full flex justify-center items-center p-2">
-                        <ChatBubbleIcon></ChatBubbleIcon>
-                    </div>
-
-                    <div className="bg-[#F5F5F5] rounded-full flex justify-center items-center p-2">
-                        <ShareIcon></ShareIcon>
-                    </div>
-
-                    <div className="bg-[#F5F5F5] rounded-full flex justify-center items-center p-2">
-                        <SaveIcon></SaveIcon>
-                    </div>
+                <div className="text-left pl-2 mx-7 mb-4 text-sm border-l-2 border-red-500 font-light">
+                    <p>
+                        Acordo foi mediado pelo TRT-6 e será votado pelos metroviários em assembleia às 18h desta quarta. Assim, o metrô voltaria a operar às 5h da quinta (6)
+                    </p>
                 </div>
             </div>
 
@@ -64,13 +61,20 @@ function Noticia() {
                     publicidade
                 </span>
 
-                <p className="text-left">
+                <p className="text-left text-black text-md">
                 Após dois dias de paralisação, a greve do Metrô do Recife pode chegar ao fim nesta quarta-feira (5/11), terceiro dia do movimento. Metroviários e a Companhia Brasileira de Trens Urbanos (CBTU) chegaram a um acordo mediados pelo Tribunal Regional do Trabalho da 6ª Região (TRT-6) durante reunião de conciliação na tarde desta terça (4), mas o entendimento precisa ser validado pela categoria em assembleia prevista para acontecer às 18h desta quarta.
 
                 Quem esteve à frente da negociação foi o desembargador Eduardo Pugliesi, vice-presidente do TRT-6, que tem a função de coordenar ações de conciliação no Tribunal. O desembargador propôs que a CBTU analise, no prazo de 30 dias, o plano emergencial de recuperação do metrô, já produzido pelo Sindicato dos Metroviários. Em seguida, que alguma contraproposta seja levada ao Tribunal.
 
                 Esse plano de recuperação emergencial - que já existe na CBTU, vale destacar - será apresentado à governadora de Pernambuco, Raquel Lyra, que prometeu ser parte da solução da crise financeira do sistema metroferroviário e vem cobrando do governo federal a antecipação de recursos - R$ 1 bilhão - para o metrô, independentemente de ele vir a ser ou não concedido à iniciativa privada.
                 </p>
+
+                {/* COMPONETIZAR DEPOIS - SUBTÓPICOS */}
+                <div className="flex flex-col my-4">
+                    <h5 className="text-lg font-bold text-black text-left mb-1"> Subtítulo </h5>
+                    <p className="text-left"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia animi vero sapiente officiis officia maxime natus et eum possimus temporibus, sequi mollitia nihil fugit maiores sint. Eius unde eos reiciendis! </p>
+                </div>
+
             </div>
             
         </div>

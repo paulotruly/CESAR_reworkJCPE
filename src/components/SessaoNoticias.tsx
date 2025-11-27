@@ -3,7 +3,7 @@ import NoticiaDaSessao from "./NoticiaDaSessao"
 function SessaoNoticias() {
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col justify-center items-center">
 
             <div className="flex flex-row items-center justify-center m-4">
                 <p className="font-semibold tracking-tight text-lg"> Últimas notícias </p>
@@ -14,12 +14,10 @@ function SessaoNoticias() {
                 <NoticiaDaSessao></NoticiaDaSessao>
                 <NoticiaDaSessao></NoticiaDaSessao>
                 <NoticiaDaSessao></NoticiaDaSessao>
-                <div className="flex justify-center items-center bg-blue-100 text-blue-300 rounded-lg"> publicidade </div>
-                <NoticiaDaSessao></NoticiaDaSessao>
-                <NoticiaDaSessao></NoticiaDaSessao>
-                <NoticiaDaSessao></NoticiaDaSessao>
                 <NoticiaDaSessao></NoticiaDaSessao>
             </div>
+
+            <button className="my-3 px-5 py-1 rounded-full bg-[#DF1E26] text-white text-md"> VER MAIS </button>
         </div>
     )
 }
