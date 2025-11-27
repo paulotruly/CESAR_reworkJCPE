@@ -6,6 +6,6 @@ import Noticia from './pages/Noticia.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Noticia />
+    <App />
   </StrictMode>,
 )
