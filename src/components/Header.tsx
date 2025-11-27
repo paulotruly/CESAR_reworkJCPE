@@ -1,7 +1,41 @@
+import { useEffect, useState } from "react";
 import { MenuIcon } from "../assets/MenuIcon"
 import { SearchIcon } from "../assets/SearchIcon"
 
+interface Topico {
+    id: number;
+    nome: string;
+}
+
 function Header() {
+    //                            definindo estado inicial
+    const [topicos, setTopicos] = useState<Topico[]>([]);
+    const API_URL = 'http://localhost:8080/topicos';
+
+    const [mostrarCategorias, setMostrarCategorias] = useState<boolean>(false);
+    const [botaoMais, setBotaoMais] = useState<boolean>(true);
+
+    // BUSCANDO TÓPICOS DA API
+    useEffect(() =>{
+        const buscarTopicos = async () => {
+            try {
+                const resposta = await fetch(API_URL);
+                if (!resposta.ok) {
+                    throw new Error(`Erro na API: ${resposta.statusText} `)
+                }
+                
+                const dados: Topico[] = await resposta.json();
+                setTopicos(dados);
+            } catch {
+                console.error("Não foi possível buscar os tópicos! ");
+            }
+        };
+
+        buscarTopicos();
+    }, []);
+    
+
+
 
     return (
         <div>
@@ -28,14 +62,62 @@ function Header() {
                 </nav>
             </div>
 
-            <div className="group flex flex-row items-center justify-center w-full h-auto text-[13px] bg-[#F1F0F0] gap-5">
-                <a className="text-[#DF1E26] hover:bg-[#DF1E26] hover:text-white" href=""> Política </a>
-                <a className="text-[#DF1E16] hover:bg-[#DF1E26] hover:text-white" href=""> Mundo </a>
-                <a className="text-[#DF1E16] hover:bg-[#DF1E26] hover:text-white" href=""> Economia </a>
-                <a className="text-[#DF1E16] hover:bg-[#DF1E26] hover:text-white" href=""> Ciência e Tecnologia </a>
+            
 
-                <button className="text-[#DF1E26] text-right p-2 font-semibold hover:bg-[#DF1E26] hover:text-white"> Mais </button>
+
+            <div className="group flex flex-row items-center justify-center w-full h-auto text-[13px] bg-[#f0f1f0] p-3 gap-6">
+
+                {topicos.slice(0,4).map((topico) => (
+                    <a 
+                        key={topico.id}
+                        className="text-[#DF1E26] hover:bg-[#DF1E26] hover:text-white" 
+                        href=""
+                    >
+                        {topico.nome}
+                    </a>
+                ))}
+
+                {botaoMais && (
+                <button
+                onClick={() => {
+                    setMostrarCategorias(!mostrarCategorias);
+                    setBotaoMais(!botaoMais);
+                }}
+                className="text-[#DF1E26] text-right font-semibold hover:bg-[#DF1E26] hover:text-white">
+                    Mais
+                </button>
+                )}
+
             </div>
+
+            {mostrarCategorias && (  
+            <div className="group flex flex-row items-center justify-center w-full h-auto text-[13px] bg-[#F1F0F0] p-3 gap-5">
+                
+                {topicos.slice(4).map((topico) => (
+                    <a 
+                        key={topico.id}
+                        className="text-[#DF1E26] hover:bg-[#DF1E26] hover:text-white" 
+                        href=""
+                    >
+                        {topico.nome}
+                    </a>
+                ))}
+
+                <button
+                onClick={() => {
+                    setMostrarCategorias(!mostrarCategorias);
+                    setBotaoMais(!botaoMais)
+                }}
+                className="text-[#DF1E26] text-right font-semibold hover:bg-[#DF1E26] hover:text-white">
+                    Menos
+                </button>
+
+            </div>
+            )}
+            
+
+
+
 
             <div className="flex flex-row items-center bg-white w-full h-auto p-4 text-[13px]">
 
