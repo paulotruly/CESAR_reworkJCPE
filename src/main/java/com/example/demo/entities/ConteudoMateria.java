@@ -10,7 +10,7 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class ConteudoMateria {
 
-    @JsonProperty("texto Principal")
+    @JsonProperty("textoPrincipal")
     private String textoPrincipal;
     @ElementCollection
     private List<ItemSubtitulo> subtitulos; //

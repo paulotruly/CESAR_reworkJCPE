@@ -35,5 +35,8 @@ public class TopicoDataLoader implements CommandLineRunner{
         if (topicoRepository.findByNome("Inovação").isEmpty()) {
             topicoRepository.save(new Topico("Inovação"));
         }
+        if (topicoRepository.findByNome("Política").isEmpty()) {
+            topicoRepository.save(new Topico("Política"));
+        }
     }
 }
