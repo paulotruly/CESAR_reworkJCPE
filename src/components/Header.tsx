@@ -7,19 +7,33 @@ interface Topico {
     nome: string;
 }
 
+interface NoticiaCompleta {
+    dataPublicacao: string;
+    topico: { id: number; nome: string }; 
+}
+
+interface Materia {
+    dataPublicacao: string;
+    topicoId: number;
+    topicoNome: string;
+}
+
 function Header() {
     //                            definindo estado inicial
     const [topicos, setTopicos] = useState<Topico[]>([]);
-    const API_URL = 'http://localhost:8080/topicos';
+    const [materias, setMaterias] = useState<Materia[]>([]);
+    const API_URL_TOPICOS = 'http://localhost:8080/topicos';
+    const API_URL_MATERIAS = 'http://localhost:8080/materias';
 
     const [mostrarCategorias, setMostrarCategorias] = useState<boolean>(false);
     const [botaoMais, setBotaoMais] = useState<boolean>(true);
+    const [mostrarRecentes, setMostrarRecentes] = useState<boolean>(false);
+    const [botaoMaisRecentes, setBotaoMaisRecentes] = useState<boolean>(true);
 
-    // BUSCANDO TÓPICOS DA API
     useEffect(() =>{
         const buscarTopicos = async () => {
             try {
-                const resposta = await fetch(API_URL);
+                const resposta = await fetch(API_URL_TOPICOS);
                 if (!resposta.ok) {
                     throw new Error(`Erro na API: ${resposta.statusText} `)
                 }
@@ -34,7 +48,38 @@ function Header() {
         buscarTopicos();
     }, []);
     
+    useEffect(() => {
+        const buscarHorarios = async () => {
+            try {
+                const resposta = await fetch(API_URL_MATERIAS);
+                if (!resposta.ok) {
+                    throw new Error(`Erro na API: ${resposta.statusText} `)
+                }
 
+                const dadosCompletos: NoticiaCompleta[] = await resposta.json();
+
+                const dadosProcessados: Materia[] = dadosCompletos.map(noticia => ({
+                    dataPublicacao: noticia.dataPublicacao,
+                    topicoId: noticia.topico.id,
+                    topicoNome: noticia.topico.nome
+                }));
+
+                // ordenando por data!!
+                const dadosOrdenados = dadosProcessados.sort((a, b) => {
+                    const dataA = new Date(a.dataPublicacao);
+                    const dataB = new Date(b.dataPublicacao);
+
+                    return dataB.getTime() - dataA.getTime();
+                });
+
+                console.log(dadosOrdenados);
+                setMaterias(dadosOrdenados);
+            } catch {
+                console.error("Não foi possível buscar os tópicos! ");
+            }
+        };
+        buscarHorarios()
+    }, []);
 
 
     return (
@@ -64,7 +109,7 @@ function Header() {
 
             
 
-
+            {/* BARRA DE NAVAGEÇÃO PRINCIPAL */}
             <div className="group flex flex-row items-center justify-center w-full h-auto text-[13px] bg-[#f0f1f0] p-3 gap-6">
 
                 {topicos.slice(0,4).map((topico) => (
@@ -118,22 +163,60 @@ function Header() {
 
 
 
-
-            <div className="flex flex-row items-center bg-white w-full h-auto p-4 text-[13px]">
-
-                <div className="flex flex-row items-center text-[#DF1E26] w-1/3">
+            {/* BARRA DE NAVAGEÇÃO RECENTES */}
+            <div className="flex flex-row items-center justify-center bg-white w-full h-auto p-4 gap-2 text-[13px]">
+                <div className="h-6 mr-1 flex flex-row items-center text-[#DF1E26]">
                     <p className="font-semibold tracking-tighter text-[14px]"> 11:40  - QUI </p>
                 </div>
 
-                <div className="flex items-center justify-between w-2/3">
-                    <a className="text-black" href=""> Esportes </a>
-                    <a className="text-black" href=""> Cultura </a>
-                    <a className="text-black" href=""> Saúde </a>
-                    <a className="text-black" href=""> Política </a>
-                    <a className="text-black font-extrabold" href=""> + </a>
+                <div className="h-6 flex items-center gap-4 ">
+                    {materias.slice(0, 4).map((materia) => (
+                        <a
+                        key={materia.topicoId}
+                        className="text-black"
+                        href="">
+                            {materia.topicoNome}
+                        </a>
+                    ))}
+                </div>
+                
+                {botaoMaisRecentes && (
+                <button
+                onClick={() => {
+                    setMostrarRecentes(!mostrarRecentes);
+                    setBotaoMaisRecentes(!botaoMaisRecentes)
+                }}
+                className="h-6 flex items-center mx-2 px-1 font-bold text-black text-[16px]"
+                >
+                +
+                </button>
+                )}
+            </div>
+
+            {mostrarRecentes && (
+            <div className="flex flex-row items-center justify-center bg-white w-full h-auto pb-4 px-4 text-[13px]">
+                <div className="h-6 flex items-center gap-4">
+                    {materias.slice(4).map((materia) => (
+                        <a
+                        key={materia.topicoId}
+                        className="text-black"
+                        href="">
+                            {materia.topicoNome}
+                        </a>
+                    ))}
                 </div>
 
+                <button
+                onClick={() => {
+                    setMostrarRecentes(!mostrarRecentes);
+                    setBotaoMaisRecentes(!botaoMaisRecentes)
+                }}
+                className="h-6 flex items-center mx-2 px-1 font-bold text-black text-[16px]"
+                >
+                -
+                </button>
             </div>
+            )}
 
         </div>
     )

@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Header></Header>
-      <Noticia></Noticia>
+      <Home></Home>
       <Rodape></Rodape>
     </>
   )
