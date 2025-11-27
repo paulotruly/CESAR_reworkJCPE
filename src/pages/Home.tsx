@@ -4,7 +4,7 @@ import SessaoNoticias from "../components/SessaoNoticias"
 function Home() {
 
     return (
-        <div className="min-h-screen">
+        <div>
             <UltimaNoticia></UltimaNoticia>
             <SessaoNoticias></SessaoNoticias>
         </div>

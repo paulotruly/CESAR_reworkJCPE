@@ -1,6 +1,8 @@
 import './App.css'
-import Home from './pages/Home'
+import Footer from './components/FooterProdutos'
 import Header from './components/Header'
+import Home from './pages/Home'
+import Noticia from './pages/Noticia'
 
 function App() {
 
@@ -8,6 +10,7 @@ function App() {
     <>
       <Header></Header>
       <Home></Home>
+      <Footer></Footer>
     </>
   )
 }

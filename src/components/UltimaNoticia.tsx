@@ -8,7 +8,7 @@ function UltimaNoticia() {
                 alt="" />
 
             <div className="absolute flex flex-col w-full px-4 mt-2 bottom-6 left-0 z-30">
-                <div className="w-fit inline-block bg-[#DF1E26] px-2 py-1 rounded-lg mb-1">
+                <div className="w-fit inline-block bg-[#DF1E26] px-2 py-1 rounded-lg mb-2">
                     <p className="text-white font-semibold text-[10px]"> CATEGORIA </p>
                 </div>
                 
