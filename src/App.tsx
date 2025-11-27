@@ -1,7 +1,7 @@
 import './App.css'
-import Footer from './components/FooterProdutos'
 import Header from './components/Header'
 import Home from './pages/Home'
+import Rodape from './components/Rodape'
 import Noticia from './pages/Noticia'
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <>
       <Header></Header>
       <Home></Home>
-      <Footer></Footer>
+      <Rodape></Rodape>
     </>
   )
 }
