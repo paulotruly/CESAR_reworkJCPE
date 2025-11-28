@@ -109,12 +109,12 @@ function Header() {
             
 
             {/* BARRA DE NAVAGEÇÃO PRINCIPAL */}
-            <div className="group flex flex-row items-center justify-center w-full h-auto text-[13px] bg-[#f0f1f0] p-3 gap-6">
+            <div className="group flex flex-row items-center justify-center w-full h-auto text-[13px] bg-[#f0f1f0]">
 
                 {topicos.slice(0,4).map((topico) => (
                     <a 
                         key={topico.id}
-                        className="text-[#DF1E26] hover:bg-[#DF1E26] hover:text-white" 
+                        className="text-[#DF1E26] hover:bg-[#DF1E26] p-3 hover:text-white" 
                         href=""
                     >
                         {topico.nome}
@@ -127,7 +127,7 @@ function Header() {
                     setMostrarCategorias(!mostrarCategorias);
                     setBotaoMais(!botaoMais);
                 }}
-                className="text-[#DF1E26] text-right font-semibold hover:bg-[#DF1E26] hover:text-white">
+                className="text-[#DF1E26] text-right font-semibold hover:bg-[#DF1E26] hover:text-white p-3">
                     Mais
                 </button>
                 )}
@@ -135,12 +135,12 @@ function Header() {
             </div>
 
             {mostrarCategorias && (  
-            <div className="group flex flex-row items-center justify-center w-full h-auto text-[13px] bg-[#F1F0F0] p-3 gap-5">
+            <div className="group flex flex-row items-center justify-center w-full h-auto text-[13px] bg-[#F1F0F0] gap-2">
                 
                 {topicos.slice(4).map((topico) => (
                     <a 
                         key={topico.id}
-                        className="text-[#DF1E26] hover:bg-[#DF1E26] hover:text-white" 
+                        className="text-[#DF1E26] hover:bg-[#DF1E26] hover:text-white  p-3" 
                         href=""
                     >
                         {topico.nome}
@@ -152,7 +152,7 @@ function Header() {
                     setMostrarCategorias(!mostrarCategorias);
                     setBotaoMais(!botaoMais)
                 }}
-                className="text-[#DF1E26] text-right font-semibold hover:bg-[#DF1E26] hover:text-white">
+                className="text-[#DF1E26] text-right font-semibold hover:bg-[#DF1E26] hover:text-white p-3">
                     Menos
                 </button>
 
@@ -163,7 +163,7 @@ function Header() {
 
 
             {/* BARRA DE NAVAGEÇÃO RECENTES */}
-            <div className="flex flex-row items-center justify-center bg-white w-full h-auto p-4 gap-2 text-[13px]">
+            <div className="flex flex-row items-center justify-center bg-white w-full h-auto p-2 gap-2 text-[13px]">
                 <div className="h-6 mr-1 flex flex-row items-center text-[#DF1E26]">
                     <p className="font-semibold tracking-tighter text-[14px]"> 11:40  - QUI </p>
                 </div>

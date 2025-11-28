@@ -38,7 +38,7 @@ function SessaoNoticias() {
     const handleCarregarMais = () => {
         setContagemVisivel(prevCount => prevCount + QUANTIDADE_MATERIAS);
     };
-    const temMais = contagemVisivel < QUANTIDADE_MATERIAS;
+    const temMais = contagemVisivel < materias.length;
 
     useEffect(() =>{
         const buscarMaterias = async () => {
@@ -86,7 +86,7 @@ function SessaoNoticias() {
             
             {temMais && (
                 <button
-                onClick={() => {handleCarregarMais}}
+                onClick={handleCarregarMais}
                 className="my-3 px-5 py-1 rounded-full bg-[#DF1E26] text-white text-md">
                     VER MAIS
                 </button>
