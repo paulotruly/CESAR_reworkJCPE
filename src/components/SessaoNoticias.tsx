@@ -1,6 +1,73 @@
+import { useEffect, useState } from "react";
 import NoticiaDaSessao from "./NoticiaDaSessao"
 
+export interface Materia {
+id: number;
+titulo: string;
+legenda: string;
+autor: string;
+imagem: string;
+dataPublicacao: string; 
+conteudo: ConteudoMateria;
+topico: Topico;
+}
+
+interface Topico {
+id: number;
+nome: string; 
+}
+
+interface SubtituloConteudo {
+titulo: string; 
+texto: string; 
+}
+
+interface ConteudoMateria {
+subtitulos: SubtituloConteudo[];
+textoPrincipal: string; 
+}
+
 function SessaoNoticias() {
+
+    const API_URL_MATERIAS = 'http://localhost:8080/materias';
+    const [materias, setMaterias] = useState<Materia[]>([]);
+    
+    const QUANTIDADE_MATERIAS = 4;
+    const [contagemVisivel, setContagemVisivel] = useState(QUANTIDADE_MATERIAS); 
+
+    const handleCarregarMais = () => {
+        setContagemVisivel(prevCount => prevCount + QUANTIDADE_MATERIAS);
+    };
+    const temMais = contagemVisivel < QUANTIDADE_MATERIAS;
+
+    useEffect(() =>{
+        const buscarMaterias = async () => {
+            try {
+                const resposta = await fetch(API_URL_MATERIAS);
+                if (!resposta.ok) {
+                    throw new Error(`Erro na API: ${resposta.statusText} `)
+                }
+                
+                const dadosCompletos: Materia[] = await resposta.json();
+                const dadosParaOrdenar = [...dadosCompletos];
+
+                // ordenando por data!!
+                const dadosOrdenados = dadosParaOrdenar.sort((a, b) => {
+                    const dataA = new Date(a.dataPublicacao);
+                    const dataB = new Date(b.dataPublicacao);
+
+                    return dataB.getTime() - dataA.getTime();
+                });
+
+                setMaterias(dadosOrdenados);
+                console.log(dadosOrdenados)
+            } catch {
+                console.error("Não foi possível buscar os tópicos! ");
+            }
+        };
+
+        buscarMaterias();
+    }, []);
 
     return (
         <div className="flex flex-col justify-center items-center">
@@ -11,13 +78,19 @@ function SessaoNoticias() {
             </div>
 
             <div className="grid grid-cols-2 gap-4 px-4">
-                <NoticiaDaSessao></NoticiaDaSessao>
-                <NoticiaDaSessao></NoticiaDaSessao>
-                <NoticiaDaSessao></NoticiaDaSessao>
-                <NoticiaDaSessao></NoticiaDaSessao>
-            </div>
+                {materias.slice(0, contagemVisivel).map((materia) => (
+                    <NoticiaDaSessao key={materia.id} materia={materia}></NoticiaDaSessao>
+                ))}
 
-            <button className="my-3 px-5 py-1 rounded-full bg-[#DF1E26] text-white text-md"> VER MAIS </button>
+            </div>
+            
+            {temMais && (
+                <button
+                onClick={() => {handleCarregarMais}}
+                className="my-3 px-5 py-1 rounded-full bg-[#DF1E26] text-white text-md">
+                    VER MAIS
+                </button>
+            )}
         </div>
     )
 }

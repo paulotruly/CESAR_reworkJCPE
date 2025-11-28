@@ -19,7 +19,6 @@ interface Materia {
 }
 
 function Header() {
-    //                            definindo estado inicial
     const [topicos, setTopicos] = useState<Topico[]>([]);
     const [materias, setMaterias] = useState<Materia[]>([]);
     const API_URL_TOPICOS = 'http://localhost:8080/topicos';
