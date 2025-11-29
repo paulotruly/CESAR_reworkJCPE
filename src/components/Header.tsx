@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MenuIcon } from "../assets/MenuIcon"
 import { SearchIcon } from "../assets/SearchIcon"
+import { Link } from "react-router-dom";
 
 interface Topico {
     id: number;
@@ -8,11 +9,13 @@ interface Topico {
 }
 
 interface NoticiaCompleta {
+    id: number;
     dataPublicacao: string;
     topico: { id: number; nome: string }; 
 }
 
 interface Materia {
+    id: number;
     dataPublicacao: string;
     topicoId: number;
     topicoNome: string;
@@ -28,6 +31,8 @@ function Header() {
     const [botaoMais, setBotaoMais] = useState<boolean>(true);
     const [mostrarRecentes, setMostrarRecentes] = useState<boolean>(false);
     const [botaoMaisRecentes, setBotaoMaisRecentes] = useState<boolean>(true);
+
+    const [materiasUnicas, setMateriasUnicas] = useState<Materia[]>([]);
 
     useEffect(() =>{
         const buscarTopicos = async () => {
@@ -58,6 +63,7 @@ function Header() {
                 const dadosCompletos: NoticiaCompleta[] = await resposta.json();
 
                 const dadosProcessados: Materia[] = dadosCompletos.map(noticia => ({
+                    id: noticia.id,
                     dataPublicacao: noticia.dataPublicacao,
                     topicoId: noticia.topico.id,
                     topicoNome: noticia.topico.nome
@@ -71,7 +77,16 @@ function Header() {
                     return dataB.getTime() - dataA.getTime();
                 });
 
-                console.log(dadosOrdenados);
+                const ultimasPorTopico = dadosOrdenados.reduce((acc, materia) => {
+                    if (!acc[materia.topicoId]) {
+                        acc[materia.topicoId] = materia;
+                    }
+                    return acc;
+                }, {} as Record<number, Materia>)
+
+                const materiasProcessadas: Materia[] = Object.values(ultimasPorTopico);
+
+                setMateriasUnicas(materiasProcessadas);
                 setMaterias(dadosOrdenados);
             } catch {
                 console.error("Não foi possível buscar os tópicos! ");
@@ -169,13 +184,13 @@ function Header() {
                 </div>
 
                 <div className="h-6 flex items-center gap-4 ">
-                    {materias.slice(0, 4).map((materia) => (
-                        <a
+                    {materiasUnicas.slice(0, 4).map((materia) => (
+                        <Link
+                        to={`/noticias/${materia.id}`}
                         key={materia.topicoId}
-                        className="text-black"
-                        href="">
-                            {materia.topicoNome}
-                        </a>
+                        className="text-black">
+                                {materia.topicoNome}
+                        </Link>
                     ))}
                 </div>
                 
@@ -195,13 +210,13 @@ function Header() {
             {mostrarRecentes && (
             <div className="flex flex-row items-center justify-center bg-white w-full h-auto pb-4 px-4 text-[13px]">
                 <div className="h-6 flex items-center gap-4">
-                    {materias.slice(4).map((materia) => (
-                        <a
+                    {materiasUnicas.slice(4).map((materia) => (
+                        <Link
+                        to={`/noticias/${materia.id}`}
                         key={materia.topicoId}
-                        className="text-black"
-                        href="">
-                            {materia.topicoNome}
-                        </a>
+                        className="text-black">
+                                {materia.topicoNome}
+                        </Link>
                     ))}
                 </div>
 
