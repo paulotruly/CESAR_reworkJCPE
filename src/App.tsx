@@ -1,17 +1,17 @@
 import './App.css'
-import Header from './components/Header'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home'
-import Rodape from './components/Rodape'
 import Noticia from './pages/Noticia'
 
 function App() {
 
   return (
-    <>
-      <Header></Header>
-      <Home></Home>
-      <Rodape></Rodape>
-    </>
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/noticias/:id" element={<Noticia />} />
+        </Routes>
+    </BrowserRouter>
   )
 }
 
