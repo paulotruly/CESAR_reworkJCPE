@@ -27,7 +27,11 @@ subtitulos: SubtituloConteudo[];
 textoPrincipal: string; 
 }
 
-function SessaoNoticias() {
+export interface SessaoNoticiasProps {
+    filtroTopicoId?: number | null; 
+}
+
+function SessaoNoticias({filtroTopicoId}: SessaoNoticiasProps) {
 
     const API_URL_MATERIAS = 'http://localhost:8080/materias';
     const [materias, setMaterias] = useState<Materia[]>([]);
@@ -49,10 +53,11 @@ function SessaoNoticias() {
                 }
                 
                 const dadosCompletos: Materia[] = await resposta.json();
-                const dadosParaOrdenar = [...dadosCompletos];
+
+                const dadosFiltrados = filtroTopicoId ? dadosCompletos.filter(m => m.topico.id === filtroTopicoId) : dadosCompletos;
 
                 // ordenando por data!!
-                const dadosOrdenados = dadosParaOrdenar.sort((a, b) => {
+                const dadosOrdenados = dadosFiltrados.sort((a, b) => {
                     const dataA = new Date(a.dataPublicacao);
                     const dataB = new Date(b.dataPublicacao);
 
@@ -67,7 +72,7 @@ function SessaoNoticias() {
         };
 
         buscarMaterias();
-    }, []);
+    }, [filtroTopicoId]);
 
     return (
         <div className="flex flex-col justify-center items-center">

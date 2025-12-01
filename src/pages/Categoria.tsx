@@ -1,5 +1,7 @@
+import SessaoNoticias from "../components/SessaoNoticias";
 import UltimaNoticiaCategoria from "../components/UltimaNoticiaCategoria";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export interface Materia {
   id: number;
@@ -31,9 +33,19 @@ export interface UltimaNoticiaProps {
     materia: Materia | null;
 }
 
+interface CategoriaRouteParams {
+    id?: string;
+    [key: string]: string | undefined;
+}
+
 function Categoria() {
+
+        const { id } = useParams<CategoriaRouteParams>();
+
         const API_URL_MATERIAS = 'http://localhost:8080/materias';
         const [materias, setMaterias] = useState<Materia[]>([]);
+
+        const filtroTopicoId = id ? parseInt(id) : null;
     
         useEffect(() => {
             const buscarEManterMaterias = async () => {
@@ -44,8 +56,12 @@ function Categoria() {
                     }
                     
                     const dadosCompletos: Materia[] = await resposta.json();
+
+                    const dadosFiltrados = filtroTopicoId 
+                    ? dadosCompletos.filter(m => m.topico.id === filtroTopicoId)
+                    : dadosCompletos;
                     
-                    const dadosOrdenados = [...dadosCompletos].sort((a, b) => {
+                    const dadosOrdenados = [...dadosFiltrados].sort((a, b) => {
                         return new Date(b.dataPublicacao).getTime() - new Date(a.dataPublicacao).getTime();
                     });
     
@@ -60,10 +76,13 @@ function Categoria() {
         const ultimaNoticia = materias.length > 0 ? materias[0] : null;
 
     return (
-            <div className="mx-4 my-4">
+            <div className="flex flex-col my-4">
                 {ultimaNoticia &&
                     <UltimaNoticiaCategoria materia={ultimaNoticia}
                 />}
+
+                <SessaoNoticias filtroTopicoId={filtroTopicoId}></SessaoNoticias>
+
             </div>
     )
 }

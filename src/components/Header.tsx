@@ -127,13 +127,13 @@ function Header() {
             <div className="group flex flex-row items-center justify-center w-full h-auto text-[13px] bg-[#f0f1f0]">
 
                 {topicos.slice(0,4).map((topico) => (
-                    <a 
+                    <Link 
+                        to={`/categoria/${topico.id}`}
                         key={topico.id}
                         className="text-[#DF1E26] hover:bg-[#DF1E26] p-3 hover:text-white" 
-                        href=""
                     >
                         {topico.nome}
-                    </a>
+                    </Link>
                 ))}
 
                 {botaoMais && (
@@ -153,13 +153,13 @@ function Header() {
             <div className="group flex flex-row items-center justify-center w-full h-auto text-[13px] bg-[#F1F0F0] gap-2">
                 
                 {topicos.slice(4).map((topico) => (
-                    <a 
+                    <Link
+                        to={`/categoria/${topico.id}`}
                         key={topico.id}
                         className="text-[#DF1E26] hover:bg-[#DF1E26] hover:text-white  p-3" 
-                        href=""
                     >
                         {topico.nome}
-                    </a>
+                    </Link>
                 ))}
 
                 <button
