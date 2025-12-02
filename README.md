@@ -85,7 +85,7 @@ npm run dev
   
 ---
 
-## Technologias
+## Tecnologias
 
 ### Front-end
 - React.js  
