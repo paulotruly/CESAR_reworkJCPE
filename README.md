@@ -69,7 +69,7 @@ npm run dev
 
 | Nome | Função | LinkedIn |
 |------|------|-----------|
-| Paulo Gomes | Full stack developer | [linkedin.com/in/paulotruly](https://www.linkedin.com/in/paulotruly) |
+| Paulo Gomes | Desenvolvedor full stack | [linkedin.com/in/paulotruly](https://www.linkedin.com/in/paulotruly) |
 | (preencher) | (preencher) | (preencher) |
 | (preencher) | (preencher) | (preencher) |
 | (preencher) | (preencher) | (preencher) |
