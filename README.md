@@ -70,7 +70,7 @@ npm run dev
 | Nome | Função | LinkedIn |
 |------|------|-----------|
 | Paulo Gomes | Desenvolvedor full stack | [linkedin.com/in/paulotruly](https://www.linkedin.com/in/paulotruly) |
-| João Pedro Galvão | QA | [https://www.linkedin.com/in/galvaojp](https://www.linkedin.com/in/galvaojp) |
+| João Pedro Galvão | QA | [linkedin.com/in/galvaojp](https://www.linkedin.com/in/galvaojp) |
 | (preencher) | (preencher) | (preencher) |
 | (preencher) | (preencher) | (preencher) |
 
