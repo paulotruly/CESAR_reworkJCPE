@@ -75,7 +75,7 @@ function SessaoNoticias({filtroTopicoId}: SessaoNoticiasProps) {
     }, [filtroTopicoId]);
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div id="sessao-noticias" className="flex flex-col justify-center items-center">
 
             <div className="flex flex-row items-center justify-center m-4">
                 <p className="font-semibold tracking-tight text-lg"> Últimas notícias </p>
