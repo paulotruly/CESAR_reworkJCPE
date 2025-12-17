@@ -70,9 +70,12 @@ npm run dev
 | Nome | Função | LinkedIn |
 |------|------|-----------|
 | Paulo Gomes | Desenvolvedor full stack | [linkedin.com/in/paulotruly](https://www.linkedin.com/in/paulotruly) |
+| Ester Santos | Gerente de projeto | [linkedin.com/in/ester-hsnt/](https://www.linkedin.com/in/ester-hsnt/) |
 | João Pedro Galvão | QA | [linkedin.com/in/galvaojp](https://www.linkedin.com/in/galvaojp) |
-| (preencher) | (preencher) | (preencher) |
-| (preencher) | (preencher) | (preencher) |
+| Gustavo Henrique Silva | Designer UX/UI | - |
+| Diego Carvalho | Designer UX/UI | - |
+| Maria Luiza Fernandes | Designer UX/UI | - |
+| Cícero Souza | Apoio técnico | - |
 
 ---
 
@@ -104,8 +107,7 @@ npm run dev
 
 | Camada | Tecnologia | Função |
 | :--- | :--- | :--- |
-| (preencher) | (preencher) | (preencher) |
-| (preencher) | (preencher) | (preencher) |
-| (preencher) | (preencher) | (preencher) |
-| (preencher) | (preencher) | (preencher) |
-
+| Apresentação | React.js | Interface do usuário, responsável pela interação com o sistema, exibição de dados e envio de requisições ao back-end |
+| Comunicação | REST | Realiza a comunicação entre o front-end e o back-end por meio de requisições HTTP e troca de dados em formato JSON |
+| Aplicação | Java + Spring Boot | Contém a lógica de negócio, regras do sistema e processamento das requisições |
+| Dados | MySQL | Armazenamento e gerenciamento dos dados persistentes do sistema |
